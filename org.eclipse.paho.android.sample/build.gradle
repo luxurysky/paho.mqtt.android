@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId rootProject.ext.sampleArchivesBaseName
         minSdkVersion 16
-        targetSdkVersion 32
+        targetSdkVersion 34
         versionCode 1
         versionName "0.1"
     }
