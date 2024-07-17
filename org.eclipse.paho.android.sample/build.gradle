@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace "org.eclipse.paho.android.sample"
+
     compileSdkVersion rootProject.ext.compileSdkVersion
    // buildToolsVersion rootProject.ext.buildToolsVersion
 
