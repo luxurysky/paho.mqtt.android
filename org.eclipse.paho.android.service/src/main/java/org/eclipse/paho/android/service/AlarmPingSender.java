@@ -20,11 +20,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
 import android.os.Build;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
-import android.provider.Settings;
 import android.util.Log;
 
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -129,10 +127,7 @@ class AlarmPingSender implements MqttPingSender {
 				Log.d(TAG, "Alarm schedule using setExactAndAllowWhileIdle, next: " + delayInMilliseconds);
 				alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, nextAlarmInMilliseconds, pendingIntent);
 			} else {
-				Intent intent = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
-				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				intent.setData(Uri.fromParts("package", service.getPackageName(), null));
-				service.startActivity(intent);
+				Log.w(TAG, "Requires the 'android.permission.SCHEDULE_EXACT_ALARM' permission to set exact alarms.");
 			}
 		} else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			// In SDK 23 and above, dosing will prevent setExact, setExactAndAllowWhileIdle will force
